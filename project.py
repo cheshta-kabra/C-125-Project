@@ -5,7 +5,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression 
 from PIL import Image
 import PIL.ImageOps 
-x,y=fetch_openml('mnist_784',version=1,return_X_y=True)
+X = np.load('image.npz')['arr_0'] 
+y = pd.read_csv("labels.csv")["labels"] 
+print(pd.Series(y).value_counts()) 
+classes = ['A', 'B', 'C', 'D', 'E','F', 'G', 'H', 'I', 'J', "K", 
+"L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
 Xtrain,Xtest,Ytrain,Ytest=train_test_split(x,y,random_state=9,train_size=7500,test_size=2500)
 Xtrain_scaled=Xtrain/255
 Xtest_scaled =Xtest/255
